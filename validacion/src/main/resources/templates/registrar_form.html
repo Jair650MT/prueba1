@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div>
+        <h1>Formulario de registro</h1>
+        <form th:action="@{/registrar}" method="post" th:object="${persona}">
+            <div>
+                <label>Nombre:</label>
+                <input type="text" th:field="*{nombre}"><br>
+                <span th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">Error de nombre</span>
+            </div>
+            <div>
+                <label>Email:</label>
+                <input type="email" th:field="*{email}"><br>
+                <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Error de email</span>
+            </div>
+            <div>
+                <label>Password:</label>
+                <input type="password" th:field="*{password}"><br>
+                <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Error de password</span>
+            </div>
+            <div>
+                <label>Fecha nacimiento:</label>
+                <input type="date" th:field="*{fechaNacimiento}"><br>
+                <span th:if="${#fields.hasErrors('fechaNacimiento')}" th:errors="*{fechaNacimiento}">Error de fecha de nacimiento</span>
+            </div>
+            <div>
+                <label>Género:</label>
+                <input type="radio" th:field="*{genero}" value="Masculino">Masculino
+                <input type="radio" th:field="*{genero}" value="Femenino">Femenino
+                <span th:if="${#fields.hasErrors('genero')}" th:errors="*{genero}">Error de nombre</span>
+            </div>
+            <div>
+                <label>Profesiones:</label>
+                <select th:field="*{profesion}">
+                    <option th:each="p : ${profesiones}" th:value="${p}" th:text="${p}"></option>
+                    <span th:if="${#fields.hasErrors('profesion')}" th:errors="*{profesion}">Error de profesión</span>
+                </select>
+            </div>
+            <div>
+                <label>Matrimonio:</label>
+                <input type="checkbox" th:field="*{matrimonio}"><br>
+                <span th:if="${#fields.hasErrors('matrimonio')}" th:errors="*{matrimonio}">Error de matrimonio</span>
+            </div>
+            <div>
+                <label>Ingreso anual:</label>
+                <input type="text" th:field="*{ingreso}"><br>
+                <span th:if="${#fields.hasErrors('ingreso')}" th:errors="*{ingreso}">Error de ingreso</span>
+            </div>
+            <div>
+                <label>Domicilio:</label>
+                <textarea rows="5" cols="225" th:field="*{domicilio}"></textarea>
+                <span th:if="${#fields.hasErrors('domicilio')}" th:errors="*{domicilio}">Error de nombre</span>
+            </div>
+            <div>
+                <div></div>
+                <div><button type="submit">Registrar</button></div>
+                <div></div>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
